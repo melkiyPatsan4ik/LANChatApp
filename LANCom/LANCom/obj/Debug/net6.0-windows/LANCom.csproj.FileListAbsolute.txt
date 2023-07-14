@@ -1,0 +1,17 @@
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\bin\Debug\net6.0-windows\LANCom.exe
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\bin\Debug\net6.0-windows\LANCom.deps.json
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\bin\Debug\net6.0-windows\LANCom.runtimeconfig.json
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\bin\Debug\net6.0-windows\LANCom.dll
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\bin\Debug\net6.0-windows\LANCom.pdb
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.csproj.AssemblyReference.cache
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.Form1.resources
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.csproj.GenerateResource.cache
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.AssemblyInfoInputs.cache
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.AssemblyInfo.cs
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.csproj.CoreCompileInputs.cache
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.dll
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\refint\LANCom.dll
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.pdb
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\LANCom.genruntimeconfig.cache
+C:\Users\novarayX\Documents\GitHub\LANChatApp\LANCom\LANCom\obj\Debug\net6.0-windows\ref\LANCom.dll
