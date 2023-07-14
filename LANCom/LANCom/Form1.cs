@@ -93,17 +93,44 @@ namespace LANCom
         }
         private void SendAcknowledgment(IPEndPoint senderEP)
         {
-            UdpClient udpClient = new UdpClient();
+
             byte[] acknowledgmentData = Encoding.ASCII.GetBytes("ACK");
             udpClient.Send(acknowledgmentData, acknowledgmentData.Length, senderEP);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            string[] ipAddresses = GetLocalIPAddresses();
+            string[] ipAddresses = DiscoverDevices();
+
             foreach (string ipAddress in ipAddresses)
             {
                 listBox1.Items.Add(ipAddress);
             }
+        }
+        private string[] DiscoverDevices()
+        {
+            List<string> ipAddresses = new List<string>();
+            using (UdpClient udpClient = new UdpClient())
+            {
+                byte[] discoveryData = Encoding.ASCII.GetBytes("DISCOVER");
+                udpClient.Send(discoveryData, discoveryData.Length, new IPEndPoint(IPAddress.Broadcast, Port));
+                udpClient.Client.ReceiveTimeout = 3000; 
+                IPEndPoint remoteEP = new IPEndPoint(IPAddress.Any, Port);
+                while (true)
+                {
+                    try
+                    {
+                        byte[] data = udpClient.Receive(ref remoteEP);
+                        string response = Encoding.ASCII.GetString(data);
+                        ipAddresses.Add(remoteEP.Address.ToString());
+                    }
+                    catch (SocketException ex)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return ipAddresses.ToArray();
         }
         private string[] GetLocalIPAddresses()
         {
