@@ -2,6 +2,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
+
 namespace LANCom
 {
     public partial class Form1 : Form
@@ -10,6 +12,7 @@ namespace LANCom
         private UdpClient udpClient;
         private Thread receiveThread;
         private const int Port = 8888;
+        private IPEndPoint remoteEP;
         public Form1()
         {
             InitializeComponent();
@@ -45,20 +48,75 @@ namespace LANCom
             }
             else
             {
-                // Append the received message to the TextBox or ListBox control
+
                 textBox4.AppendText(message + Environment.NewLine);
+                listBox1.Items.Add(message);
+                label2.Text = "New Message: " + message;
+                label2.Visible = true;
+                WaitForAcknowledgment();
+            }
+            SendAcknowledgment(remoteEP);
+        }
+        private void WaitForAcknowledgment()
+        {
+            try
+            {
+                udpClient.Client.ReceiveTimeout = 5000; // 5 seconds
+                byte[] data = udpClient.Receive(ref remoteEP);
+                string acknowledgment = Encoding.ASCII.GetString(data);
+                if (acknowledgment == "ACK")
+                {
+                    MessageBox.Show("Message delivered successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to deliver the message!");
+                }
+            }
+            catch (SocketException ex)
+            {
+                MessageBox.Show("Error receiving acknowledgment: " + ex.Message);
             }
         }
         private void send_Click(object sender, EventArgs e)
         {
             string message = textBox1.Text;
+            SendMessage(message);
+            WaitForAcknowledgment();
+        }
+        private void SendMessage(string message)
+        {
             byte[] data = Encoding.ASCII.GetBytes(message);
             udpClient.Send(data, data.Length, new IPEndPoint(IPAddress.Broadcast, Port));
+            udpClient.Send(data, data.Length, new IPEndPoint(IPAddress.Parse("127.0.0.1"), Port));
             textBox1.Clear();
+        }
+        private void SendAcknowledgment(IPEndPoint senderEP)
+        {
+            UdpClient udpClient = new UdpClient();
+            byte[] acknowledgmentData = Encoding.ASCII.GetBytes("ACK");
+            udpClient.Send(acknowledgmentData, acknowledgmentData.Length, senderEP);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            string[] ipAddresses = GetLocalIPAddresses();
+            foreach (string ipAddress in ipAddresses)
+            {
+                listBox1.Items.Add(ipAddress);
+            }
+        }
+        private string[] GetLocalIPAddresses()
+        {
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+            List<string> ipAddresses = new List<string>();
+            foreach (IPAddress ipAddress in host.AddressList)
+            {
+                if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ipAddresses.Add(ipAddress.ToString());
+                }
+            }
+            return ipAddresses.ToArray();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -74,6 +132,11 @@ namespace LANCom
         {
             udpClient.Close();
             // receiveThread.Abort();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

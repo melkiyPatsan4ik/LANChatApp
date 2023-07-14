@@ -34,6 +34,8 @@
             textBox3 = new TextBox();
             textBox4 = new TextBox();
             send = new Button();
+            label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // textBox1
@@ -90,17 +92,41 @@
             send.UseVisualStyleBackColor = true;
             send.Click += send_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = SystemColors.Control;
+            label1.Location = new Point(334, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 7;
+            label1.Text = "Users:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(334, 269);
+            label2.Name = "label2";
+            label2.Size = new Size(12, 15);
+            label2.TabIndex = 8;
+            label2.Text = "-";
+            label2.Click += label2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.ControlText;
+            ClientSize = new Size(800, 461);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(send);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
             Controls.Add(listBox1);
             Controls.Add(textBox1);
+            MinimumSize = new Size(800, 500);
             Name = "Form1";
             Text = "LANCom";
             Load += Form1_Load;
@@ -116,5 +142,7 @@
         private TextBox textBox3;
         private TextBox textBox4;
         private Button send;
+        private Label label1;
+        private Label label2;
     }
 }
